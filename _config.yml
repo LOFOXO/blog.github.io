@@ -1,10 +1,10 @@
 # Site settings
-title: Hux Blog
-SEOTitle: 黄玄的博客 | Hux Blog
+title: LOFOXO Blog
+SEOTitle: 发祥的博客 | LOFOXO Blog
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
-description: "关于前端与设计、黑客与画家 | 黄玄，Web & Mobile Lover，Front-End Engineer，UX Designer | 这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界。"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, 前端, 设计, 产品, 肖玉, Lynn, 肖玉的男朋友"
+email: tutuzuo@gmail.com
+description: "旅程，拨开世界迷雾的日记"
+keyword: "unity，游戏，场景"
 url: "http://lofoxo.github.io/blog.github.io"              # your host, for absolute URL
 baseurl: /blog.github.io                         # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -68,8 +68,8 @@ ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，我想去看看。"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "想想游戏，做做游戏，玩玩游戏"
+sidebar-avatar: /img/home-head.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
