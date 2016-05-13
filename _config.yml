@@ -1,6 +1,6 @@
 # Site settings
 title: LOFOXO Blog
-SEOTitle: 发祥的博客 | LOFOXO Blog
+SEOTitle: 发祥的博客0 | LOFOXO Blog
 header-img: img/home-bg.jpg
 email: tutuzuo@gmail.com
 description: "旅程，拨开世界迷雾的日记"
@@ -69,7 +69,7 @@ ga_domain: huangxuan.me
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "想想游戏，做做游戏，玩玩游戏"
-sidebar-avatar:http://lofoxo.github.io/blog.github.io/img/home-head.jpg     # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar:/img/home-head.jpg     # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
