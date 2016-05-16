@@ -1,82 +1,62 @@
 ---
 layout:     post
-title:      "Hello 2015"
+title:      "unity移动平台角色阴影解决方案"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2015-01-29 12:00:00
-author:     "Hux"
+author:     "LOFOXO"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
 tags:
-    - 生活
+    - unity
 ---
 
 > “Yeah It's on. ”
 
 
-## 前言
+##unity移动平台角色阴影解决方案 ##
+##Projector Shadow制作
 
-Hux 的 Blog 就这么开通了。
-
-[跳过废话，直接看技术实现 ](#build) 
-
-
-
-2015 年，Hux 总算有个地方可以好好写点东西了。
-
-
-作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。
-
-在玩了一段时间知乎之后，答题的快感又激起了我开博客的冲动。之前的[个人网站](http://huangxuan.me/portfolio)是作品集形式的（现在集成进来了），并不适合用来写博文，一不做二不休，花一天搞一个吧！
-
-
-<p id = "build"></p>
----
-
-## 正文
-
-接下来说说搭建这个博客的技术细节。  
-
-正好之前就有关注过 [GitHub Pages](https://pages.github.com/) + [Jekyll](http://jekyllrb.com/) 快速 Building Blog 的技术方案，非常轻松时尚。
-
-其优点非常明显：
-
-* **Markdown** 带来的优雅写作体验
-* 非常熟悉的 Git workflow ，**Git Commit 即 Blog Post**
-* 利用 GitHub Pages 的域名和免费无限空间，不用自己折腾主机
-	* 如果需要自定义域名，也只需要简单改改 DNS 加个 CNAME 就好了 
-* Jekyll 的自定制非常容易，基本就是个模版引擎
-
-
-本来觉得最大的缺点可能是 GitHub 在国内访问起来太慢，所以第二天一起床就到 GitCafe(Chinese GitHub Copy) 迁移了一个[镜像](http://huxpro.gitcafe.io)出来，结果还是巨慢。
-
-哥哥可是个前端好嘛！ 果断开 Chrome DevTool 查了下网络请求，原来是 **pending 在了 Google Fonts** 上，页面渲染一直被阻塞到请求超时为止，难怪这么慢。  
-忍痛割爱，只好把 Web Fonts 去了（反正超时看到的也只能是 fallback ），果然一下就正常了，而且 GitHub 和 GitCafe 对比并没有感受到明显的速度差异，虽然 github 的 ping 值明显要高一些，达到了 300ms，于是用 DNSPOD 优化了一下速度。
+思路：主要是利用一个正交的camera去获取阴影模型的体面，赋予给创建的一个rendertexture，然后利用projector去渲染这个rendertexture
 
 
 
----
+创建场景
+--------
 
-配置的过程中也没遇到什么坑，基本就是 Git 的流程，相当顺手
-
-大的 Jekyll 主题上直接 fork 了 Clean Blog（这个主题也相当有名，就不多赘述了。唯一的缺点大概就是没有标签支持，于是我给它补上了。）
-
-本地调试环境需要 `gem install jekyll`，结果 rubygem 的源居然被墙了……后来手动改成了我大淘宝的镜像源才成功
-
-Theme 的 CSS 是基于 Bootstrap 定制的，看得不爽的地方直接在 Less 里改就好了（平时更习惯 SCSS 些），**不过其实我一直觉得 Bootstrap 在移动端的体验做得相当一般，比我在淘宝参与的团队 CSS 框架差多了……**所以为了体验，也补了不少 CSS 进去
-
-最后就进入了耗时反而最长的**做图、写字**阶段，也算是进入了**写博客**的正轨，因为是类似 Hack Day 的方式去搭这个站的，所以折腾折腾着大半夜就过去了。
-
-第二天考虑中文字体的渲染，fork 了 [Type is Beautiful](http://www.typeisbeautiful.com/) 的 `font` CSS，调整了字号，适配了 Win 的渣渲染，中英文混排效果好多了。
+ ![这里写图片描述](http://img.blog.csdn.net/20160115140424681)                                                       1为剑的阴影模型，2为人物的阴影模型（注：为了资源优化，两个阴影模型可用超低面数）
+拉取一个人物到场景，同时，人物模型应包含所需要的阴影模型
+对人物设置如下：
+人物其他部分层级不变，在Inspector面板的layer中新建一个Shadow层级，将两个shadow模型的层级改变为Shadow；![这里写图片描述](http://img.blog.csdn.net/20160115142523269)
 
 
-## 后记
 
-回顾这个博客的诞生，纯粹是出于个人兴趣。在知乎相关问题上回答并获得一定的 star 后，我决定把这个博客主题当作一个小小的开源项目来维护。
+创建Projector_Camera
+------------------
 
-在经历 v1.0 - v1.5 的蜕变后，这个博客主题愈发完整，不但增加了诸多 UI 层的优化（opinionated）；在代码层面，更加丰富的配置项也使得这个主题拥有了更好的灵活性与可拓展性。而作为一个开源项目，我也积极的为其完善文档与解决 issue。
+**关闭灯光阴影，新建一个Camera，同时将重命名为Projector_Camera，参数进行调整**![这里写图片描述](http://img.blog.csdn.net/20160115142806514)                                                                     Camera具体参数如下：![这里写图片描述](http://img.blog.csdn.net/20160115142850922)
 
-如果你恰好逛到了这里，希望你也能喜欢这个博客主题。
+创建RenderTexture
+---------------
 
-—— Hux 后记于 2015.10
+**在Project中右键新建一个RenderTexture，命名为ShadowTest**![这里写图片描述](http://img.blog.csdn.net/20160115143248815)
+ 创建RenderTexture的主要目的是为了将我们创建的Porjector_Camera拍摄的画面转存到RenderTexture里，以便我们创建接下来Projector后的渲染调用
 
 
+创建Projector
+-----------
+
+ 在Hierarchy视图中创建一个空物体，命名为Projector，同时为空物体添加一个Projector组件!![这里写图片描述](http://img.blog.csdn.net/20160115144918055)
+
+
+**将Project拖到Projector_Camera下面，同时将我们刚创建的rendertexture拖到Projector_Camera的Target Texture中，为rendertexture获取所需的图像**![这里写图片描述](http://img.blog.csdn.net/20160115145106213)
+
+创建材质球
+-----
+
+创建一个材质球shadow，赋予给Projector组件，材质球用能够渲染Rendertexture的类型，同时将我们的Rendertexture拖到材质球上进行应用![这里写图片描述](http://img.blog.csdn.net/20160115145249365)这个时候已经有阴影了，但是位置和方向不正确，我们根据灯光方向需要重新调整我们的方向和位置，同时我们需要对渲染的层次进行调整
+
+ 1. camera的CullingMask去选掉Shadow层级，使我们的游戏画面不会对阴影模型进行渲染![这里写图片描述](http://img.blog.csdn.net/20160115145500110)
+ 2. 新建一个层级Terrains，将地面改为Terrains层级，同时在Projector的IgnoreLayers进行设置，将Terrains层级去选（注：Terrains层级是为让阴影在特定的层级上进行显示，减少资源消耗）![这里写图片描述](http://img.blog.csdn.net/20160115145528323)经过调整后，阴影就正常显示了![这里写图片描述](http://img.blog.csdn.net/20160115145659324)
+ 3. 为了让阴影和动作匹配，要将Projector_Camera和Projector拖到动作的脚部移动点（改变移动位置，不会改变旋转）![这里写图片描述](http://img.blog.csdn.net/20160115145737350)
+
+Ok，整体完成，播放时阴影就可以和动作匹配了！！
