@@ -2,7 +2,7 @@
 layout:     post
 title:      "unity移动平台角色阴影解决方案"
 subtitle:   " \"Hello World, Hello Blog\""
-date:       2015-01-29 12:00:00
+date:       2016-05-16
 author:     "LOFOXO"
 header-img: "img/post-bg-2015.jpg"
 catalog: true
@@ -10,11 +10,8 @@ tags:
     - unity
 ---
 
-> “Yeah It's on. ”
+> “移动平台阴影”
 
-
-##unity移动平台角色阴影解决方案 ##
-##Projector Shadow制作
 
 思路：主要是利用一个正交的camera去获取阴影模型的体面，赋予给创建的一个rendertexture，然后利用projector去渲染这个rendertexture
 
