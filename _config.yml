@@ -12,11 +12,11 @@ baseurl: /blog.github.io                         # for example, '/blog' if your 
 
 # SNS settings
 RSS: false
-weibo_username:     LOFOXO
-zhihu_username:     LOFOXO
+#weibo_username:     lofoxo
+#zhihu_username:     tutuzuo
 github_username:    LOFOXO
 #twitter_username:  huxpro
-facebook_username:  LOFOXO
+#facebook_username:  LOFOXO
 
 
 
@@ -50,7 +50,7 @@ kramdown:
 #disqus_username: _your_disqus_short_name_
 
 # Duoshuo settings
-duoshuo_username: huxblog
+duoshuo_username: LOFOXO
 # Share component is depend on Comment so we can NOT use share only.
 duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
@@ -59,10 +59,10 @@ duoshuo_share: true                     # set to false if you want to use Commen
 
 # Analytics settings
 # Baidu Analytics
-ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+#ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: lofoxo.github.io/blog.me
+#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+#ga_domain: lofoxo.github.io/blog.me
 
 
 
