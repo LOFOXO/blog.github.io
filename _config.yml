@@ -84,8 +84,10 @@ friends: [
     {
         title: "My CSDN",
         href: "http://blog.csdn.net/tutuzuo"
+      
+    },
+    {
         title: "shader_candycat",
         href: "http://candycat1992.github.io/"
-
     }
 ]
