@@ -1,0 +1,101 @@
+---
+layout:     post
+title:      "UnitySprite播放脚本"
+subtitle:   " \"ios Camera Control\""
+date:       2016-01-28
+author:     "LOFOXO"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - Scripts
+---
+
+> “UnitySprite播放脚本”
+
+using UnityEngine;
+using System.Collections;
+
+public class DrawSprites : MonoBehaviour {
+
+	//定义精灵图片集合
+	public Sprite[] MySprites;
+
+	//上一次使用的精灵集合
+	private Sprite[] lastSprites;
+	//当前使用的精灵集合
+	private Sprite[] currentSprites;
+
+	//当前帧序列索引
+	private int index=0;
+	//每秒帧数
+	private float fps=10;
+	//当前经历时间
+	private float currentTime=0;
+
+	//角色当前状态
+	private PlayerState state;
+
+	//精灵渲染器
+	private SpriteRenderer renderer=null;
+
+	// Use this for initialization
+	void Start () {
+		//初始化角色精灵集合
+		currentSprites=MySprites;
+		lastSprites=currentSprites;
+		//获取精灵渲染器
+		renderer=GetComponent<SpriteRenderer>();
+
+	}
+
+	// Update is called once per frame
+	void Update () {
+
+		state=PlayerState.Walk;
+
+		SetSprites(MySprites);
+
+		DrawSprite(currentSprites);
+
+	}
+
+	//设置当前精灵集合
+	private void SetSprites(Sprite[] sprites)
+	{
+		currentSprites=sprites;
+		//如果当前精灵集合和上一次使用的精灵集合不等则表明要切换精灵集合
+		if(currentSprites!=lastSprites)
+		{
+			lastSprites=currentSprites;
+			index=0;
+		}
+	}
+
+	private void DrawSprite(Sprite[] sprites)
+	{
+
+
+		currentTime+=Time.deltaTime;
+		//如果当前时间大于帧动画渲染时间则需要渲染新的帧动画
+		if(currentTime>1/fps){
+			//使索引增加并将当前时间清零以便于重新计数
+			index+=1;
+			currentTime=0;
+			//使索引连续画面循环
+			if(index>=sprites.Length){
+				index=0;
+			}
+		}
+		//渲染
+		renderer.sprite=sprites[index];
+	}
+	#region 角色状态枚举定义#
+	enum PlayerState
+	{
+		Walk,
+		Idle,
+		Attack
+	}
+	#endregion
+}
+```
