@@ -15,7 +15,6 @@ RSS: false
 #weibo_username:     lofoxo
 #zhihu_username:     tutuzuo
 github_username:    LOFOXO
-#twitter_username:  huxpro
 #facebook_username:  LOFOXO
 
 
@@ -52,14 +51,14 @@ kramdown:
 # Duoshuo settings
 duoshuo_username: LOFOXO
 # Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+duoshuo_share: false                     # set to false if you want to use Comment without Sharing
 
 
 
 
 # Analytics settings
 # Baidu Analytics
-#ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+ba_track_id: 55df67e33b8c615be71a335c9a953613
 # Google Analytics
 #ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
 ga_domain: auto
@@ -83,7 +82,10 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "csdn",
+        title: "My CSDN",
         href: "http://blog.csdn.net/tutuzuo"
+        title: "shader_candycat",
+        href: "http://candycat1992.github.io/"
+
     }
 ]
