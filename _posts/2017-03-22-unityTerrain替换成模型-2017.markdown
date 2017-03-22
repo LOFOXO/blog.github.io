@@ -1,0 +1,32 @@
+---
+layout:     post
+title:      "unityTerrain替换成模型方法"
+subtitle:   " \"unity Terrain 模型\""
+date:       2017-03-22
+author:     "LOFOXO"
+header-img: "img/terrain-bg-2017.jpg"
+catalog: true
+tags:
+    - Scenes
+---
+
+> “unityTerrain替换成模型方法”
+
+前言
+--
+使用unity制作场景的过程中，Terrain是性能优化的一大问题，对于Terrain的优化最好方式是能够
+直接将其转化为模型文件，同时又不会影响其在unity编辑好的效果。在这之前，一直没有比较好的方
+式去解决这个问题，最近在mc项目的优化过程中偶然发现一种方法可以较为完美地解决这个问题。
+
+解决方案
+----
+
+将unity编辑好的Terrain转化为模型的思路主要分为两个部分：
+
+ 1. 将Terrain系统的模型转化为max可编辑的模型文件obj
+ 2. 将Terrain编辑后的SplatAlpha文件导出成ps可以编辑的图片文件
+
+
+模型文件的导出
+--------
+在mc项目主城中创建的一个Terrain进行编辑完成后如图"img/post-terrain/post-terrain-01"
