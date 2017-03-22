@@ -30,4 +30,4 @@ tags:
 模型文件的导出
 --------
 在mc项目主城中创建的一个Terrain进行编辑完成后如图
-<img class="Texture" src="/img/post-terrain/post-terrain-01.png" width="260">
+<img class="Texture" src="/img/post-terrain/post-terrain-01.jpg" width="260">
