@@ -29,5 +29,6 @@ tags:
 
 模型文件的导出
 --------
-在mc项目主城中创建的一个Terrain进行编辑完成后如图**
+在mc项目主城中创建的一个Terrain进行编辑完成后如图
+
 ![](/img/post-terrain/post-terrain-01.jpg)
