@@ -31,4 +31,4 @@ tags:
 --------
 在mc项目主城中创建的一个Terrain进行编辑完成后如图
 
-![](https://github.com/LOFOXO/blog.github.io/blob/gh-pages/img/post-terrain/post-terrain-01.jpg)
+![](/img/post-terrain/post-terrain-01.jpg)
