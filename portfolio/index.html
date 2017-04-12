@@ -1,0 +1,77 @@
+---
+title: Portfolio
+layout: default
+---
+
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Hux - Timeline</title>
+		<link rel="stylesheet" type="text/css" href="css/timeline.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container" style="margin:0;padding:0;width:100%;">
+			<header>
+				<img width="190" height="190" src="images/avatar-head.png">
+				<h1>LOFOXO</h1>
+				<p>A student major in Mobile Games,<br>
+					focus on Game Scenes，Shaders，Models，Game Effects</p>
+			</header>
+			<div class="main">
+				<ul class="cbp_tmtimeline">
+					<li>
+						<div class="cbp_tmlabel">
+							<h2 id="boxoffice">烈魂三国(Isg-my first game)</h2>
+							<time>2014.06-2016.04</time>
+							<img src="images/isg_01.jpg">
+							<ul>
+								<li>
+									isg is my first game.I did it for two years.
+								</li>
+								<li class="skill">
+									<span class="i-react"></span>
+									<span class="link"><a target="_blank" href="https://lofoxo.github.io/Isg.github.io/">More</a></span>
+								</li>
+							</ul>
+						</div>
+					</li>
+			    <li>
+						<div class="cbp_tmlabel">
+							<h2 id="boxoffice">圣堂之战（WAR OF LORDS）</h2>
+							<time>2016.03-2017</time>
+							<img src="images/MC_01.jpg">
+							<ul>
+								<li>
+								 Mc是公司的第二个项目
+								</li>
+								<li class="skill">
+									<span class="i-react"></span>
+									<span class="link"><a target="_blank" href="https://lofoxo.github.io/Isg.github.io/">More</a></span>
+								</li>
+							</ul>
+						</div>
+					</li>
+
+					{% if site.duoshuo_username %}
+					<li>
+						<div class="cbp_tmlabel">
+			                <!-- 多说评论框 start -->
+			                <div class="comment">
+			                    <div class="ds-thread"
+									data-thread-key="{{site.duoshuo_username}}/portfolio"
+			                        data-title="{{page.title}}"
+			                        data-url="{{site.url}}{{site.baseurl}}{{page.url}}" >
+			                    </div>
+			                </div>
+			                <!-- 多说评论框 end -->
+						</div>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+</html>

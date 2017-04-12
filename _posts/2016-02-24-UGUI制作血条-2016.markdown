@@ -1,0 +1,45 @@
+---
+layout:     post
+title:      "使用UGUI制作血条中Slider的value控制"
+subtitle:   " \"ugui 血条 Slider value\""
+date:       2016-02-24
+author:     "LOFOXO"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - Scripts
+---
+
+> “UGUI面板中特效显示解决方案”
+
+困惑
+
+在使用ugui的Slider制作血条过程中碰到困惑，就是将人物的血量值传递给Slider的value。
+之前的思路是将脚本挂在Slider下去this .GetComponent获取Slider组件来修改value值。但是发现这样是不行的，Slider中没有Slider(Script)这个组件，百度了n久也没有相关的案例，所以去官网寻找了下。
+
+解决方案
+
+查看了官网的API，解决了该问题：
+
+using UnityEngine;
+using System.Collections;
+using UnityEngine.UI; // Required when Using UI elements.
+
+```
+using UnityEngine;
+using System.Collections;
+using UnityEngine.UI; // Required when Using UI elements.
+
+public class Example : MonoBehaviour
+{
+	public Slider mainSlider;
+
+	//Invoked when a submit button is clicked.
+	public void SubmitSliderSetting()
+	{
+		//Displays the value of the slider in the console.
+		Debug.Log (mainSlider.value);
+	}
+}
+```
+解决方案非常简单，是自己的定式思维了。

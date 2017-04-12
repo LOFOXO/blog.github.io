@@ -1,0 +1,40 @@
+---
+layout:     post
+title:      "UGUI面板中特效显示解决方案"
+subtitle:   " \"ugui camera 显示问题\""
+date:       2016-02-19
+author:     "LOFOXO"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - unity
+---
+
+> “UGUI面板中特效显示解决方案”
+
+**问题**
+在ugui使用中发现制作的特效没办法在ugui面板中显示，对particleSystem进行了各种设置包括修改层级等等，都无法显示。
+
+**解决方案**
+可以发现ugui没有像ngui那样的UICamera，这样我们可以尝试自己添加个UICamera去进行显示，但是通常创建的camera会替换我们的mainCamera，所以我们需要对camera进行一些设置。
+
+ 1. 创建UICamera，将它放在适合的位置
+ 2. 修改UICamera的ClearFlags参数，将其修改为Depth only（重要，之前一直忽略的小知识），同时将Projection修改为2d摄像机视角，修改其合适大小对ui层级进行匹配
+ 3. 可以对其新建一个layer层级，将particle的层级设置为新建的层级，同时将UICamera的CullingMask层级只勾选新建的层级
+
+ 至此，问题解决，后续会对其进行测试
+
+//2016.02.23
+重新查找了些资料，发现上面做法有个非常大的缺陷，particle的大小对ui匹配非常不方便，而且没办法进行自适应，所以需要对以上方法进行重新优化。
+正确的做法是：
+需要把Canvas的组件中Canvas中的RenderMode改成Screen Speed -Camera,并且将上面所创建的UI_Camera拖到RenderCamera上。
+ok，问题完美解决，使用方法和NGUI原理一样了。。。
+
+//2016.02.25
+在使用过程中发现有时候UICamera的渲染会被MainCamera所遮挡，有时候又正常显示。一开始以为是unity的一个bug，但是通过查找资料发现是自己的错误：
+
+错误之处：
+两个Camera的depth值设为相同的了，unity会根据camera创建先后决定谁在前谁在后渲染（个人猜测，使用时发现创建先后影响渲染前后，非官方资料文档），正是它们的渲染深度一致，所以才导致渲染前后遮挡问题
+
+解决方案：
+保证UICamera的Depth值大于MainCamera就可以了。

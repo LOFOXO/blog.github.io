@@ -1,0 +1,113 @@
+---
+layout:     post
+title:      "unity2d角色防止二段跳解决方案"
+subtitle:   " \"unity 2d 二段跳\""
+date:       2016-02-27
+author:     "LOFOXO"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - Scripts
+---
+
+> “unity2d角色防止二段跳解决方案”
+
+问题
+--
+在制作游戏过程中，对于2d人物角色的二段跳困惑了一段时间，二段跳的关键在于判断人物是否离开地面的条件。
+
+解决方案
+----
+
+通过查找资料终于解决了该问题，主要的解决思路是：
+
+在人物的脚底创建一个空物体，在2d角色生成一个由角色到空物体的射线，利用Physics2D.Linecast函数去判断这个射线是否穿过地面，进而返回一个bool值。
+其中需要注意的几点是：
+
+ 1. 需要为地面创建一个单独的层级，主要是为了给Physics2D.Linecast函数进行使用。
+ 2. 可以通过名称查找的方式去获取空物体，进而为函数判断服务。
+
+
+参考代码
+----
+查看函数[Physics2D.Linecast](http://docs.unity3d.com/ScriptReference/Physics2D.Linecast.html)
+
+代码片段
+
+```
+using UnityEngine;
+using System.Collections;
+
+public class ButtonControl : MonoBehaviour {
+    public float Speed;
+    public GameObject Player;
+    private float xValue;
+    float PlayerX;
+	float OldPlayerY;
+    float PlayerY;
+
+	//定义函数变量
+	private bool IsJump=true;
+	private Transform groundCheck;
+
+	void Start()
+	{
+		//通过查找子物体方式获取检测判断的空物体
+		groundCheck = transform.FindChild ("groundCheck");
+	}
+
+    void Update()
+    {
+		WeaponScript.ShotState = WeaponScript.ShotState;
+		IsJump = true;
+        Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+        Player.transform.position = new Vector3(PlayerX, Player.transform.position.y, Player.transform.position.z);
+
+		//利用函数判断角色是否离开地面，进而返回一个布尔值
+		IsJump =Physics2D.Linecast(Player .transform.position ,groundCheck .position ,1<<LayerMask .NameToLayer("Ground"));
+
+    }
+
+    public void BackButtonOnClick() {
+
+		WeaponScript.ShotState = 1;
+
+		DrawSprites.state = DrawSprites.PlayerState.LeftWalk;
+		PlayerX -= Speed * 0.2f*Time .deltaTime ;
+    }
+    public void FrontButtonOnClick()
+    {
+
+		WeaponScript.ShotState = 0;
+
+		DrawSprites.state = DrawSprites.PlayerState.RightWalk;
+		PlayerX += Speed * 0.2f*Time .deltaTime;
+    }
+    public void UpButtonOnClick()
+    {
+		//利用返回的布尔值进行条件筛选判定角色是否可以起跳
+		if (IsJump){
+
+			Player.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 700));
+
+		}
+
+
+    }
+
+	public void ShotButtonOnClick(){
+		//Debug.Log (1);
+		WeaponScript weapon = GetComponent<WeaponScript>();
+		if (weapon != null)
+		{
+			// false because the player is not an enemy
+			weapon.Attack(false);
+
+			//Debug.Log (0);
+		}
+	}
+
+}
+```
+
+ok，至此问题解决~~~

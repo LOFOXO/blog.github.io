@@ -1,0 +1,74 @@
+---
+layout:     post
+title:      "unity ios平台镜头控制"
+subtitle:   " \"ios Camera Control\""
+date:       2016-01-22
+author:     "LOFOXO"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - Scripts
+---
+
+> “unity ios平台镜头控制”
+
+脚本主要是用手势控制镜头的移动和缩放
+
+```
+using UnityEngine;
+using System.Collections;
+
+public class ControlCameraTest : MonoBehaviour {
+	//缩放限制系数
+	float  yMinLimit = -20;
+	float  yMaxLimit = 80;
+
+	//记录上一次手机触摸位置判断用户是在左放大还是缩小手势
+	private Vector2 oldPosition1 ;
+	private Vector2 oldPosition2 ;
+
+	// Use this for initialization
+	void Start ()
+	{
+		Camera.main.fieldOfView = 30;
+	}
+
+	// Update is called once per frame
+	void Update ()
+	{
+		if (Input .touchCount==1&&Input .GetTouch(0).phase ==TouchPhase .Moved ){
+			this.transform .position -=new Vector3(Input .GetTouch (0).deltaPosition .x*0.005f ,0,Input .GetTouch (0).deltaPosition .y*0.005f );
+
+		}
+		if(Input.touchCount >1)
+		{
+			if(Input .GetTouch(0).phase ==TouchPhase .Moved ||Input .GetTouch (1).phase ==TouchPhase .Moved)
+			{
+				Vector3 tempPosition1=Input .GetTouch (0).position ;
+				Vector3 tempPosition2=Input .GetTouch (1).position ;
+
+				//函数传入上一次触摸两点的位置与本次触摸两点的位置计算出用户的手势
+				float leng1 =Mathf.Sqrt((oldPosition1.x-oldPosition2.x)*(oldPosition1.x-oldPosition2.x)+(oldPosition1.y-oldPosition2.y)*(oldPosition1.y-oldPosition2.y));
+				float leng2 =Mathf.Sqrt((tempPosition1.x-tempPosition2.x)*(tempPosition1.x-tempPosition2.x)+(tempPosition1.y-tempPosition2.y)*(tempPosition1.y-tempPosition2.y));
+
+				if(leng1<leng2)
+				{
+					Camera.main.fieldOfView -=1;
+
+				}else
+				{
+					Camera.main.fieldOfView +=1;
+
+				}
+				//备份上一次触摸点的位置，用于对比
+				oldPosition1=tempPosition1;
+				oldPosition2=tempPosition2;
+
+			}
+
+		}
+
+```
+移动主要是利用单点触控的位移和镜头本身位置进行叠加
+镜头缩放采用的是判断两点触控的类型进行改变摄像机的fieldOfView的值进行缩放控制
+脚本进行真机测试结果还行，但是需要对fieldOfView进行最大值和最小值控制
