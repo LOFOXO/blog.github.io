@@ -18,6 +18,8 @@ tags:
 直接将其转化为模型文件，同时又不会影响其在unity编辑好的效果。在这之前，一直没有比较好的方
 式去解决这个问题，最近在mc项目的优化过程中偶然发现一种方法可以较为完美地解决这个问题。
 
+**注：本方法对于Terrain的贴图数量有限制，要求在三张或三张以下（rgb），当然大神可以通过修
+改shader的方式去将图片的alpha通道加入其中，这样可以用到四张贴图**
 解决方案
 ----
 
@@ -31,4 +33,4 @@ tags:
 --------
 在mc项目主城中创建的一个Terrain进行编辑完成后如图
 
-![](/blog.github.io/img/post-terrain/post-terrain-01.jpg)
+![](/blog.github.io/img/post-terrain/post-terrain-01.png)
