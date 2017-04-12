@@ -31,4 +31,4 @@ tags:
 --------
 在mc项目主城中创建的一个Terrain进行编辑完成后如图
 
-![](/img/terrain-bg-2017.jpg)
+![](blog.github.io/img/terrain-bg-2017.jpg)
