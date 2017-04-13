@@ -519,3 +519,5 @@ Shader "Isg_Mobile/Isg_Terrain_Decal"
 这是自己写的最有质量的一篇博文了，内容包含了程序，美术，软件包含了ps，max，unity，vs的使
 用，感觉收获颇多。最近一段时间忙忙碌碌，断断续续写了好久，终于理清了思路和障碍，将其记录下
 来，以便以后的查阅和使用。
+2017-4-13 写完这篇博客偶然在Assetstore发现了和这种方法几乎一样的插件，思路都是相同的，以
+下是插件的下载链接： https://www.assetstore.unity3d.com/en/#!/content/47276
